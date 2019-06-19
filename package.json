@@ -1,0 +1,29 @@
+{
+  "name": "gulp-openapi-refs",
+  "version": "1.0.0",
+  "homepage": "https://github.com/lukoerfer/gulp-openapi-refs",
+  "description": "Gulp plugin to resolve $refs in JSON",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukoerfer/gulp-openapi-refs.git"
+  },
+  "main": "index.js",
+  "keywords": [
+    "gulpplugin",
+    "gulp-plugin",
+    "gulp",
+    "json",
+    "refs"
+  ],
+  "author": {
+    "name": "Lukas Körfer",
+    "email": "lu.koerfer@googlemail.com",
+    "url": "http://www.lukaskoerfer.de"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "json-refs": "^3.0.13",
+    "plugin-error": "^1.0.1",
+    "through2": "^3.0.1"
+  }
+}
