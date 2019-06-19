@@ -1,7 +1,8 @@
-# Gulp Refs Plugin
-Gulp plugin to resolve $refs in JSON
+# Gulp OpenAPI Refs Plugin
+Gulp plugin to resolve $refs in OpenAPI specifications
 
 ## Motivation
+
 
 ## Installation
 
