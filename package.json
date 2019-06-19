@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/lukoerfer/gulp-openapi-refs.git"
   },
+  "bugs": {
+    "url": "https://github.com/lukoerfer/gulp-openapi-refs/issues"
+  },
   "main": "index.js",
   "keywords": [
     "gulpplugin",
