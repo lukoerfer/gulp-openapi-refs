@@ -5,8 +5,8 @@ const refs = require('json-refs');
 
 module.exports = function(options = {}, load = null) {
 
-	load = load || function(content, path = null) {
-		return yaml.safeLoad(content, { filename: path });
+	load = load || function(str, path = null) {
+		return yaml.safeLoad(str, { filename: path });
 	};
 
 	options = Object.assign({
@@ -15,13 +15,16 @@ module.exports = function(options = {}, load = null) {
 		}
 	}, options);
 
+	refs.clearCache();
+
 	return through.obj(function(file, enc, callback) {
 		if (file.isBuffer()) {
 			let opts = Object.assign({}, options);
+			opts.relativeBase = opts.relativeBase || file.dirname;
 			opts.location = opts.location || file.path;
 
 			Promise.resolve(file.contents.toString())
-				.then(content => load(content, file.path))
+				.then(str => load(str, file.path))
 				.then(json => refs.resolveRefs(json, opts))
 				.then(result => {
 					file.contents = Buffer.from(JSON.stringify(result.resolved));
