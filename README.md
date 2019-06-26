@@ -7,7 +7,7 @@ When working with OpenAPI specifications, an increasing complexity can often be 
 NPM lists various similar packages like this one, but either they are not well maintained or they do not follow the Gulp style (e.g. access files by path inside the `Vinyl` stream).
 
 ## Installation
-Since the plugin is available on NPM, it can easily be installed (preferably as a development dependency):
+Since the plugin is available on [NPM](https://www.npmjs.com/package/gulp-openapi-refs), it can easily be installed (preferably as a development dependency):
 
 ```
 npm install gulp-openapi-refs [--save-dev]
