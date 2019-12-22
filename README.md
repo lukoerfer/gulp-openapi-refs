@@ -1,4 +1,5 @@
 # Gulp OpenAPI Refs Plugin
+
 Gulp plugin to resolve `$ref` elements in OpenAPI (f.k.a. Swagger) specifications
 
 ## Motivation
@@ -27,22 +28,8 @@ function myTask() {
 }
 ```
 
-This plugin does **not** support Vinyls with streams as content (`src('...', { buffer: false })`), only buffer contents can be processed.
+This plugin does **not** support Vinyls with streamed content (`src('...', { buffer: false })`), only buffer content can be processed.
 Both JSON and YAML are supported as input formats to support references from JSON to YAML and vice-versa, but the output format is always JSON. For consistence, the extension of the output files will be changed to `.json`, too. If required, another Gulp plugin must be used to convert the output files back to YAML.
-
-### Possible problems
-The resolution of `$ref` elements is not a pure operation, because some of the referenced files may be processed in the same stream. This must be taken care of when preprocessing the files with another plugin, because the preprocessed files will be stored in memory and therefore not be available under the registered path. One possible solution may be using an intermediate `dest()` (or `symlink()`) operation in the stream, even if it may decrease performance drastically:
-
-``` javascript
-
-function myTask() {
-    return src('src/**/*')
-        .pipe(somePreprocessing())
-        .pipe(dest('intermediate'))
-        .pipe(resolveRefs())
-        .pipe(dest('resolved'));
-}
-```
 
 ### Options
 
@@ -50,9 +37,15 @@ function myTask() {
 resolveRefs( [options [, load]] )
 ```
 
-The plugin takes an optional argument called `options`. These options will directly be forwarded to the [`resolveRefs` method](https://github.com/whitlockjc/json-refs/blob/master/docs/API.md#json-refsresolverefsobj-options--promiseresolvedrefsresults) of the `json-refs` package, however, some defaults in order to improve the default behavior are added automatically. To support references to YAML documents, the `loaderOptions` property will be configured to use the `load` method mentioned below. Additionally, the properties `location` and `relativeBase` will be set individually for each processed file to support relative references, if they are not defined via the options.
+#### `options`
+This object will be forwarded to the [`resolveRefs` method](https://github.com/whitlockjc/json-refs/blob/master/docs/API.md#json-refsresolverefsobj-options--promiseresolvedrefsresults) of the `json-refs` package, after applying the following implicit defaults:
 
-The second optional argument called `load` may be used to customize the way how both processed and referenced files are loaded. It must be a function that takes a file content string `str` as well as an optional file path `path` and returns a JavaScript object parsed from the content string. By default, the method `safeLoad` from the [`js-yaml` package](https://github.com/nodeca/js-yaml) is used in the following form: `(str, path = null) => yaml.safeLoad(str, { filename: path })`.
+* The property `loaderOptions` will be configured to use a custom `load` method (see parameter `load` below).
+* The properties `location` and `relativeBase` will be set individually for each processed file, as long as they are not defined explicitly.
+* The property `filter` will be configured to only resolve external references (`filter: ['remote', 'relative']`).
+
+#### `load`
+This function will be used to load both processed and referenced files. It must be a function that takes a file content string `str` as well as an optional file path `path` and returns an object parsed from the content string. By default, the method `safeLoad` from the [`js-yaml` package](https://github.com/nodeca/js-yaml) will be used in the following form: `(str, path = null) => yaml.safeLoad(str, { filename: path })`.
 
 ## License
 The software is licensed under the [MIT license](https://github.com/lukoerfer/gulp-openapi-refs/blob/master/LICENSE).
