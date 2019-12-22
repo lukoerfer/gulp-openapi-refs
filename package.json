@@ -13,8 +13,7 @@
   "main": "index.js",
   "scripts": {
     "check": "standard",
-    "fix": "standard --fix",
-    "test": "mocha"
+    "fix": "standard --fix"
   },
   "keywords": [
     "gulpplugin",
@@ -37,8 +36,6 @@
     "through2": "^3.0.1"
   },
   "devDependencies": {
-    "mocha": "^6.2.0",
-    "standard": "^14.1.0",
-    "vinyl": "^2.2.0"
+    "standard": "^14.1.0"
   }
 }

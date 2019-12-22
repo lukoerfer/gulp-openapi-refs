@@ -1,11 +1,9 @@
 const through = require('through2')
 const yaml = require('js-yaml')
 const refs = require('json-refs')
-
 const PluginError = require('plugin-error')
 
 module.exports = function (options = {}, load = null) {
-
   load = load || function (content, path = null) {
     return yaml.safeLoad(content, { filename: path })
   }
@@ -24,7 +22,6 @@ module.exports = function (options = {}, load = null) {
       const opts = Object.assign({}, options)
       opts.relativeBase = opts.relativeBase || file.dirname
       opts.location = opts.location || file.path
-
       Promise.resolve(file.contents.toString())
         .then(content => load(content, file.path))
         .then(json => refs.resolveRefs(json, opts))
@@ -41,7 +38,6 @@ module.exports = function (options = {}, load = null) {
       callback(null, file)
     }
   })
-  
 }
 
 function pluginError (message) {
