@@ -1,6 +1,6 @@
 {
   "name": "gulp-openapi-refs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Gulp plugin to resolve $ref elements in JSON",
   "homepage": "https://github.com/lukoerfer/gulp-openapi-refs",
   "repository": {
