@@ -1,4 +1,8 @@
 # Gulp OpenAPI Refs Plugin
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/lukoerfer/gulp-openapi-refs/blob/master/LICENSE)
+[![Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Check](https://github.com/lukoerfer/gulp-openapi-refs/workflows/check/badge.svg)](https://github.com/lukoerfer/gulp-openapi-refs/actions)
+[![NPM](https://img.shields.io/npm/v/gulp-openapi-refs)](https://www.npmjs.com/package/gulp-openapi-refs)
 
 Gulp plugin to resolve `$ref` elements in OpenAPI (f.k.a. Swagger) specifications
 
